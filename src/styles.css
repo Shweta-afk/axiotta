@@ -1,0 +1,450 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-gold: var(--accent-gold);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Light fintech palette — keeps the same blue/emerald accents */
+  --background: oklch(0.99 0.005 250);
+  --foreground: oklch(0.18 0.04 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 260);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 260);
+
+  /* Electric blue primary */
+  --primary: oklch(0.55 0.2 250);
+  --primary-foreground: oklch(0.99 0.005 250);
+  --primary-glow: oklch(0.7 0.18 230);
+
+  /* Emerald for growth */
+  --accent-emerald: oklch(0.62 0.16 162);
+  --accent-gold: oklch(0.75 0.14 85);
+
+  /* Extra accents for multi-color highlights */
+  --accent-violet: oklch(0.62 0.22 300);
+  --accent-pink: oklch(0.7 0.2 0);
+  --accent-orange: oklch(0.72 0.18 45);
+  --accent-cyan: oklch(0.74 0.13 210);
+
+  --secondary: oklch(0.96 0.01 250);
+  --secondary-foreground: oklch(0.2 0.04 260);
+
+  --muted: oklch(0.96 0.012 250);
+  --muted-foreground: oklch(0.45 0.03 260);
+
+  --accent: oklch(0.94 0.03 245);
+  --accent-foreground: oklch(0.2 0.05 250);
+
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 250);
+
+  --border: oklch(0.2 0.04 260 / 10%);
+  --input: oklch(0.2 0.04 260 / 14%);
+  --ring: oklch(0.55 0.2 250);
+
+  /* Gradients & shadows */
+  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.55 0.2 250 / 0.18), transparent 60%),
+                   radial-gradient(ellipse 60% 50% at 90% 30%, oklch(0.62 0.16 162 / 0.14), transparent 60%),
+                   linear-gradient(180deg, oklch(0.99 0.005 250), oklch(0.97 0.01 250));
+  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.2 250), oklch(0.7 0.18 230));
+  --gradient-emerald: linear-gradient(135deg, oklch(0.62 0.16 162), oklch(0.55 0.2 250));
+  --gradient-text: linear-gradient(135deg, oklch(0.2 0.05 260) 0%, oklch(0.55 0.2 250) 55%, oklch(0.62 0.16 162) 100%);
+
+  --shadow-glow: 0 0 60px -10px oklch(0.55 0.2 250 / 0.45);
+  --shadow-elegant: 0 24px 60px -20px oklch(0.2 0.05 260 / 0.18);
+  --shadow-card: 0 8px 30px -8px oklch(0.2 0.05 260 / 0.12);
+  --shadow-pop: 0 30px 80px -20px oklch(0.55 0.2 250 / 0.35), 0 10px 30px -10px oklch(0.62 0.16 162 / 0.25);
+  --shadow-pop-violet: 0 30px 80px -20px oklch(0.62 0.22 300 / 0.4), 0 10px 30px -10px oklch(0.7 0.2 0 / 0.25);
+  --shadow-pop-emerald: 0 30px 80px -20px oklch(0.62 0.16 162 / 0.4), 0 10px 30px -10px oklch(0.74 0.13 210 / 0.25);
+  --shadow-pop-orange: 0 30px 80px -20px oklch(0.72 0.18 45 / 0.4), 0 10px 30px -10px oklch(0.7 0.2 0 / 0.25);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.18 0.04 260);
+  --sidebar-primary: oklch(0.55 0.2 250);
+  --sidebar-primary-foreground: oklch(0.99 0.005 250);
+  --sidebar-accent: oklch(0.96 0.012 250);
+  --sidebar-accent-foreground: oklch(0.2 0.05 250);
+  --sidebar-border: oklch(0.2 0.04 260 / 10%);
+  --sidebar-ring: oklch(0.55 0.2 250);
+}
+
+/* ── Alternating section backgrounds — fade in/out to avoid hard edges ── */
+main > section:nth-of-type(even) {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    oklch(0.963 0.012 243 / 0.55) 12%,
+    oklch(0.963 0.012 243 / 0.55) 88%,
+    transparent 100%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .glass {
+    background: oklch(1 0 0 / 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid oklch(0.2 0.05 260 / 0.08);
+  }
+
+  .glass-strong {
+    background: oklch(1 0 0 / 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid oklch(0.2 0.05 260 / 0.1);
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(0.2 0.05 260 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.2 0.05 260 / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Extensive card pop on hover */
+  .card-pop {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .card-pop:hover {
+    transform: translateY(-8px) scale(1.025);
+    box-shadow: 0 24px 60px -20px oklch(0.2 0.05 260 / 0.25), 0 8px 24px -10px oklch(0.2 0.05 260 / 0.15);
+    border-color: oklch(0.2 0.05 260 / 0.18);
+  }
+  .card-pop.pop-violet:hover { box-shadow: var(--shadow-pop-violet); border-color: oklch(0.62 0.22 300 / 0.4); }
+  .card-pop.pop-emerald:hover { box-shadow: var(--shadow-pop-emerald); border-color: oklch(0.62 0.16 162 / 0.45); }
+  .card-pop.pop-orange:hover { box-shadow: var(--shadow-pop-orange); border-color: oklch(0.72 0.18 45 / 0.45); }
+  .card-pop.pop-pink:hover { box-shadow: 0 30px 80px -20px oklch(0.7 0.2 0 / 0.4); border-color: oklch(0.7 0.2 0 / 0.45); }
+  .card-pop::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, oklch(0.2 0.05 260 / 0.2), oklch(0.2 0.05 260 / 0.05));
+    opacity: 0;
+    z-index: -1;
+    filter: blur(16px);
+    transition: opacity 0.35s ease;
+  }
+  .card-pop.pop-violet::before { background: linear-gradient(135deg, var(--accent-violet), var(--accent-pink)); }
+  .card-pop.pop-emerald::before { background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan)); }
+  .card-pop.pop-orange::before { background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); }
+  .card-pop.pop-pink::before { background: linear-gradient(135deg, var(--accent-pink), var(--accent-violet)); }
+  .card-pop:hover::before {
+    opacity: 0.45;
+  }
+
+  .float-dot {
+    position: absolute;
+    border-radius: 9999px;
+    background: var(--gradient-primary);
+    opacity: 0.5;
+    filter: blur(0.5px);
+    animation: float-y 6s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50% { transform: translate(20px, -30px) scale(1.2); opacity: 0.8; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+}
+
+/* =============================================================
+   BLOG CONTENT STYLES
+   Append these rules to the end of src/styles.css
+   ============================================================= */
+
+/* Rich text content rendered inside blog posts */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  color: var(--foreground);
+}
+
+.blog-content h1 { font-size: 1.75rem; }
+.blog-content h2 { font-size: 1.35rem; }
+.blog-content h3 { font-size: 1.1rem; }
+
+.blog-content p {
+  margin-bottom: 1.2em;
+  color: var(--foreground);
+  line-height: 1.8;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2em;
+}
+
+.blog-content ul { list-style-type: disc; }
+.blog-content ol { list-style-type: decimal; }
+
+.blog-content li {
+  margin-bottom: 0.4em;
+  line-height: 1.7;
+}
+
+.blog-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.15s;
+}
+
+.blog-content a:hover {
+  opacity: 0.75;
+}
+
+.blog-content blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1.2rem;
+  margin: 1.5em 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.blog-content code {
+  background: var(--muted);
+  border-radius: 0.375rem;
+  padding: 0.1em 0.4em;
+  font-size: 0.875em;
+  font-family: ui-monospace, monospace;
+}
+
+.blog-content pre {
+  background: var(--muted);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.blog-content strong {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.blog-content em {
+  font-style: italic;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+.blog-content img {
+  max-width: 100%;
+  border-radius: 0.875rem;
+  margin: 1.5em 0;
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.875rem;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+}
+
+.blog-content th {
+  background: var(--muted);
+  font-weight: 600;
+}
+
+/* Rich text editor (Tiptap) — mirrors blog-content styles */
+.rich-editor .tiptap h2,
+.rich-editor .tiptap h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  color: var(--foreground);
+}
+.rich-editor .tiptap h2 { font-size: 1.35rem; }
+.rich-editor .tiptap h3 { font-size: 1.1rem; }
+
+.rich-editor .tiptap p {
+  margin-bottom: 0.9em;
+  color: var(--foreground);
+}
+
+.rich-editor .tiptap ul,
+.rich-editor .tiptap ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.9em;
+}
+.rich-editor .tiptap ul { list-style-type: disc; }
+.rich-editor .tiptap ol { list-style-type: decimal; }
+.rich-editor .tiptap li { margin-bottom: 0.25em; }
+
+.rich-editor .tiptap a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rich-editor .tiptap blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  margin: 1em 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.rich-editor .tiptap code {
+  background: var(--muted);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.85em;
+  font-family: monospace;
+}
+
+.rich-editor .tiptap pre {
+  background: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+.rich-editor .tiptap pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.rich-editor .tiptap hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
+.rich-editor .tiptap img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1em 0;
+}
+
+/* Placeholder text */
+.rich-editor .tiptap p.is-editor-empty:first-child::before {
+  color: var(--muted-foreground);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
