@@ -40,9 +40,9 @@ export default function Hero() {
             >
               <Sparkles className="h-3.5 w-3.5 text-primary-glow" />
             </motion.span>
-            Your trusted recovery partner since 2024
+            Trusted by 10+ banks, NBFCs &amp; fintechs
           </motion.div>
-          <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xlxl">
+          <h1 className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
             Collections Powered by Intelligence <br />
             <motion.span
               className="gradient-text bg-[length:200%_200%]"
@@ -89,7 +89,7 @@ export default function Hero() {
             {[
               { i: ShieldCheck, t: "RBI compliant" },
               { i: TrendingUp, t: "95% success rate" },
-              { i: Wallet, t: "₹500Cr+ recovered" },
+              { i: Wallet, t: "₹1,200 Cr+ recovered" },
             ].map((b, idx) => (
               <motion.div
                 key={b.t}
@@ -103,7 +103,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <div className="hidden sm:block">
+        <div className="hidden lg:block">
           <HeroVisual />
         </div>
       </div>

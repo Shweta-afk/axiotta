@@ -1,20 +1,57 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { SectionHeader } from "./Problems";
 
+/* ─── Geographic bounds from india.svg geoViewBox ─────────────── */
+const GEO = { west: 68.184, east: 97.418, north: 37.084, south: 6.754 };
+const geoW = GEO.east - GEO.west;
+const geoH = GEO.north - GEO.south;
+
+function pin(lon: number, lat: number) {
+  return {
+    left: ((lon - GEO.west) / geoW) * 100,
+    top:  ((GEO.north - lat) / geoH) * 100,
+  };
+}
+
 const cities = [
-  { name: "Delhi",      x: 127, y: 148, label: "Delhi",      agents: "45+", delay: 0 },
-  { name: "Mumbai",     x: 75,  y: 308, label: "Mumbai",     agents: "62+", delay: 0.18 },
-  { name: "Bangalore",  x: 148, y: 418, label: "Bengaluru",  agents: "38+", delay: 0.36 },
-  { name: "Chennai",    x: 170, y: 408, label: "Chennai",    agents: "29+", delay: 0.54 },
-  { name: "Kolkata",    x: 278, y: 252, label: "Kolkata",    agents: "24+", delay: 0.72 },
-  { name: "Hyderabad",  x: 158, y: 338, label: "Hyderabad",  agents: "31+", delay: 0.90 },
-  { name: "Ahmedabad",  x: 68,  y: 235, label: "Ahmedabad",  agents: "18+", delay: 1.08 },
-  { name: "Pune",       x: 88,  y: 322, label: "Pune",       agents: "22+", delay: 1.26 },
-  { name: "Jaipur",     x: 112, y: 172, label: "Jaipur",     agents: "12+", delay: 1.44 },
-  { name: "Lucknow",    x: 182, y: 175, label: "Lucknow",    agents: "15+", delay: 1.62 },
-  { name: "Chandigarh", x: 120, y: 108, label: "Chandigarh", agents: "8+",  delay: 1.80 },
-  { name: "Kochi",      x: 120, y: 460, label: "Kochi",      agents: "11+", delay: 1.98 },
+  // Metros
+  { name: "Delhi",       ...pin(77.21, 28.61) },
+  { name: "Mumbai",      ...pin(72.88, 19.08) },
+  { name: "Bengaluru",   ...pin(77.59, 12.97) },
+  { name: "Chennai",     ...pin(80.27, 13.08) },
+  { name: "Kolkata",     ...pin(88.36, 22.57) },
+  { name: "Hyderabad",   ...pin(78.48, 17.38) },
+  // Tier-1
+  { name: "Ahmedabad",   ...pin(72.59, 23.03) },
+  { name: "Pune",        ...pin(73.86, 18.52) },
+  { name: "Jaipur",      ...pin(75.79, 26.91) },
+  { name: "Lucknow",     ...pin(80.95, 26.85) },
+  { name: "Chandigarh",  ...pin(76.78, 30.74) },
+  { name: "Kochi",       ...pin(76.26,  9.93) },
+  { name: "Surat",       ...pin(72.85, 21.17) },
+  { name: "Nagpur",      ...pin(79.09, 21.15) },
+  { name: "Indore",      ...pin(75.86, 22.72) },
+  { name: "Bhopal",      ...pin(77.41, 23.26) },
+  { name: "Visakhapatnam",...pin(83.32, 17.69) },
+  { name: "Patna",       ...pin(85.14, 25.59) },
+  { name: "Bhubaneswar", ...pin(85.82, 20.30) },
+  { name: "Coimbatore",  ...pin(76.96, 11.02) },
+  { name: "Vadodara",    ...pin(73.20, 22.31) },
+  // Tier-2
+  { name: "Guwahati",    ...pin(91.74, 26.14) },
+  { name: "Dehradun",    ...pin(78.03, 30.32) },
+  { name: "Amritsar",    ...pin(74.87, 31.63) },
+  { name: "Jodhpur",     ...pin(73.02, 26.30) },
+  { name: "Ranchi",      ...pin(85.33, 23.36) },
+  { name: "Raipur",      ...pin(81.63, 21.25) },
+  { name: "Thiruvananthapuram", ...pin(76.94,  8.52) },
+  { name: "Madurai",     ...pin(78.12,  9.93) },
+  { name: "Varanasi",    ...pin(82.97, 25.32) },
+  { name: "Agra",        ...pin(78.00, 27.18) },
+  { name: "Meerut",      ...pin(77.71, 28.98) },
+  { name: "Vijayawada",  ...pin(80.62, 16.51) },
+  { name: "Rajkot",      ...pin(70.80, 22.30) },
+  { name: "Nashik",      ...pin(73.79, 19.99) },
 ];
 
 const stats = [
@@ -25,15 +62,14 @@ const stats = [
 ];
 
 export default function IndiaMap() {
-  const [hoveredCity, setHoveredCity] = useState<string | null>(null);
-
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-blue-950/5 to-background" />
 
       <div className="relative mx-auto max-w-7xl px-4">
         <div className="flex flex-col gap-12 md:flex-row md:items-center">
-          {/* ── Left: copy ── */}
+
+          {/* ── Left ── */}
           <div className="md:w-1/2 space-y-8">
             <SectionHeader
               eyebrow="Our Reach"
@@ -45,7 +81,6 @@ export default function IndiaMap() {
               subtitle="From Leh to Kanyakumari, our field agents, tele-callers and legal teams are on the ground."
             />
 
-            {/* Stats row */}
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
               {stats.map((s, i) => (
                 <motion.div
@@ -69,114 +104,77 @@ export default function IndiaMap() {
             </p>
           </div>
 
-          {/* ── Right: India SVG map ── */}
+          {/* ── Right: map + dots ── */}
           <div className="md:w-1/2 flex justify-center">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
+              transition={{ duration: 0.7 }}
+              className="relative w-full max-w-[420px]"
             >
-              <svg
-                viewBox="0 0 400 510"
-                className="w-full max-w-sm drop-shadow-lg"
-                style={{ maxHeight: 480 }}
-              >
-                {/* India mainland outline — geographically corrected */}
-                <path
-                  d="
-                    M 87,10
-                    L 115,95 L 174,120 L 230,155 L 272,171 L 320,179 L 390,162
-                    L 377,213 L 355,240 L 340,248 L 324,255 L 295,262 L 279,272
-                    L 262,290 L 248,308 L 230,335 L 210,362 L 192,382
-                    L 174,399 L 162,422 L 148,448 L 134,498
-                    L 119,492 L 105,468 L 92,440 L 82,410 L 76,385
-                    L 73,358 L 73,330 L 73,308
-                    L 62,295 L 52,282 L 40,276 L 35,284
-                    L 42,296 L 55,298 L 64,292
-                    L 66,276 L 58,258 L 46,248 L 34,246 L 20,238
-                    L 16,222 L 18,202 L 26,182
-                    L 36,145 L 52,108 L 72,72 L 87,10 Z
-                  "
-                  fill="oklch(0.55 0.18 250 / 0.09)"
-                  stroke="oklch(0.55 0.2 250 / 0.35)"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
-
-                {/* State boundary suggestion lines */}
-                <line x1="127" y1="148" x2="182" y2="175" stroke="oklch(0.55 0.2 250 / 0.08)" strokeWidth="0.5" />
-                <line x1="112" y1="172" x2="68" y2="235" stroke="oklch(0.55 0.2 250 / 0.08)" strokeWidth="0.5" />
-                <line x1="158" y1="338" x2="148" y2="418" stroke="oklch(0.55 0.2 250 / 0.08)" strokeWidth="0.5" />
-
-                {/* Region labels */}
-                <text x="155" y="68"  textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.3" fontWeight="600" letterSpacing="1">NORTH</text>
-                <text x="310" y="215" textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.3" fontWeight="600" letterSpacing="1">EAST</text>
-                <text x="38"  y="188" textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.3" fontWeight="600" letterSpacing="1">WEST</text>
-                <text x="148" y="470" textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.3" fontWeight="600" letterSpacing="1">SOUTH</text>
-
-                {/* City dots */}
-                {cities.map((city, index) => (
-                  <g
-                    key={city.name}
-                    onMouseEnter={() => setHoveredCity(city.name)}
-                    onMouseLeave={() => setHoveredCity(null)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {/* Pulsing ring */}
-                    <motion.circle
-                      cx={city.x}
-                      cy={city.y}
-                      r={7}
-                      fill="oklch(0.55 0.2 250)"
-                      animate={{ scale: [1, 2.8], opacity: [0.55, 0] }}
-                      transition={{
-                        duration: 2.2,
-                        repeat: Infinity,
-                        delay: index * 0.2,
-                        ease: "easeOut",
-                      }}
-                      style={{ transformOrigin: `${city.x}px ${city.y}px` }}
+              {/* SVG filter: maps black fills → pastel blue, transparent stays transparent */}
+              <svg width="0" height="0" className="absolute overflow-hidden">
+                <defs>
+                  <filter id="pastelBlue" colorInterpolationFilters="sRGB">
+                    {/* feColorMatrix: each row = R G B A const → output channel
+                        black(0,0,0,1) → pastel blue (0.56, 0.77, 0.93, 1)
+                        transparent(0,0,0,0) → transparent (0,0,0,0)         */}
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0.56 0
+                              0 0 0 0.77 0
+                              0 0 0 0.93 0
+                              0 0 0 1    0"
                     />
-                    {/* Solid dot */}
-                    <circle
-                      cx={city.x}
-                      cy={city.y}
-                      r={4}
-                      fill="oklch(0.55 0.2 250)"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      opacity="0.92"
-                    />
-                  </g>
-                ))}
-
-                {/* Hover tooltips */}
-                {cities.map((city) =>
-                  hoveredCity === city.name ? (
-                    <g key={`tooltip-${city.name}`}>
-                      <rect
-                        x={city.x + 8}
-                        y={city.y - 20}
-                        width={76}
-                        height={30}
-                        rx={5}
-                        fill="oklch(0.18 0.04 260)"
-                        opacity="0.94"
-                      />
-                      <text x={city.x + 13} y={city.y - 7} fontSize="7" fill="white" fontWeight="700">
-                        {city.label}
-                      </text>
-                      <text x={city.x + 13} y={city.y + 5} fontSize="6.2" fill="oklch(0.72 0.18 230)">
-                        {city.agents} agents active
-                      </text>
-                    </g>
-                  ) : null
-                )}
+                  </filter>
+                </defs>
               </svg>
+
+              {/* Map image using the precise SVG color filter */}
+              <img
+                src="/india-map.svg"
+                alt="India map"
+                className="w-full h-auto select-none pointer-events-none"
+                draggable={false}
+                style={{ filter: "url(#pastelBlue)" }}
+              />
+
+              {/* City dots */}
+              {cities.map((city, idx) => (
+                <div
+                  key={city.name}
+                  className="absolute pointer-events-none"
+                  style={{
+                    left: `${city.left}%`,
+                    top:  `${city.top}%`,
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 10,
+                  }}
+                >
+                  {/* Dot — smooth zoom-in/zoom-out breathe */}
+                  <motion.div
+                    className="absolute rounded-full"
+                    style={{
+                      width: 8, height: 8,
+                      left: "50%", top: "50%",
+                      translate: "-50% -50%",
+                      background: "oklch(0.55 0.22 250)",
+                      boxShadow: "0 0 0 1.5px white, 0 0 6px oklch(0.55 0.2 250 / 0.55)",
+                    }}
+                    animate={{ scale: [0.75, 1.35, 0.75] }}
+                    transition={{
+                      duration: 2.8 + (idx % 5) * 0.4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: (idx * 0.25) % 2.5,
+                    }}
+                  />
+                </div>
+              ))}
             </motion.div>
           </div>
+
         </div>
       </div>
     </section>

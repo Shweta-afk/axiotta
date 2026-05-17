@@ -1,34 +1,48 @@
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
-const principles = [
+/* ─────────────────────────────────────────────────────────────────
+   HOW TO ADD REAL PHOTOS LATER
+   ────────────────────────────────────────────────────────────────
+   1. Drop the headshot images into:  /public/team/
+      e.g.  /public/team/saurabh.jpg
+            /public/team/vaikhari.jpg
+            /public/team/shweta.jpg
+
+   2. In the `directors` array below, change `photo: null` to:
+      photo: "/team/saurabh.jpg"   ← (and so on for each person)
+
+   That's it — the <img> will automatically show instead of the
+   initials avatar. No other code changes needed.
+   ───────────────────────────────────────────────────────────────── */
+
+const directors = [
   {
-    num: "01",
-    title: "Founded with purpose",
-    desc: "Built specifically for the gap between legacy agencies and the needs of modern lenders. Every process designed from scratch to be fast, traceable and audit-proof.",
-    color: "text-[oklch(0.55_0.22_300)]",
-    bar: "bg-[oklch(0.55_0.22_300)]",
+    name: "Saurabh Yadav",
+    role: "Co-Founder",
+    initials: "SY",
+    photo: null as string | null,
+    bio: "Drives Axiotta's vision, strategy and technology roadmap. Brings deep expertise in fintech operations and recovery systems.",
+    gradient: "from-[oklch(0.55_0.2_250)] to-[oklch(0.38_0.18_280)]",
+    accent: "oklch(0.55 0.2 250)",
   },
   {
-    num: "02",
-    title: "Compliance by design",
-    desc: "RBI Fair Practice Code and ISO 27001 baked into operations — not bolted on after the fact. Every call recorded, every visit logged.",
-    color: "text-[oklch(0.5_0.16_162)]",
-    bar: "bg-[oklch(0.5_0.16_162)]",
+    name: "Vaikhari Manere",
+    role: "Co-Founder",
+    initials: "VM",
+    photo: null as string | null,
+    bio: "Leads daily operations, compliance frameworks and client delivery. Ensures every lender partnership runs on time and on standard.",
+    gradient: "from-[oklch(0.52_0.16_162)] to-[oklch(0.36_0.14_185)]",
+    accent: "oklch(0.52 0.16 162)",
   },
   {
-    num: "03",
-    title: "Lean, trained teams",
-    desc: "Handpicked agents and analysts who know collections, compliance and customer handling equally well.",
-    color: "text-[oklch(0.62_0.18_45)]",
-    bar: "bg-[oklch(0.62_0.18_45)]",
-  },
-  {
-    num: "04",
-    title: "Growing PAN-India",
-    desc: "Active across major metros and Tier 2 cities, with field teams expanding quarter on quarter.",
-    color: "text-[oklch(0.48_0.2_250)]",
-    bar: "bg-[oklch(0.48_0.2_250)]",
+    name: "Shweta Yadav",
+    role: "Director",
+    initials: "SY",
+    photo: null as string | null,
+    bio: "Oversees human capital, regional expansion and organisational culture — ensuring Axiotta's teams stay trained, motivated and compliant.",
+    gradient: "from-[oklch(0.58_0.18_45)] to-[oklch(0.42_0.16_30)]",
+    accent: "oklch(0.58 0.18 45)",
   },
 ];
 
@@ -46,7 +60,7 @@ export default function About() {
 
       <div className="relative mx-auto max-w-7xl px-4">
 
-        {/* ── Top: eyebrow + tagline + floating logo ── */}
+        {/* ── Header + floating logo ── */}
         <div className="grid items-center gap-16 lg:grid-cols-[1fr_auto]">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
@@ -58,7 +72,8 @@ export default function About() {
               <span className="gradient-text">&amp; expertise</span>
             </h2>
             <p className="mt-6 max-w-lg text-lg text-muted-foreground leading-relaxed">
-              We started lean, stayed compliant and built a collections operation that banks and fintechs actually trust — without the legacy baggage.
+              We started lean, stayed compliant and built a collections operation
+              that banks and fintechs actually trust — without the legacy baggage.
             </p>
           </div>
 
@@ -90,45 +105,92 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── Numbered principles — NO cards, just typography + dividers ── */}
-        <div className="mt-24 space-y-0">
-          {principles.map((p, i) => (
-            <motion.div
-              key={p.num}
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              {/* Divider */}
-              <div className="h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
+        {/* ── Leadership ── */}
+        <div className="mt-24">
+          <div className="mb-10 flex items-end justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
+                Leadership
+              </p>
+              <h3 className="mt-2 text-2xl font-bold md:text-3xl">
+                The people behind Axiotta
+              </h3>
+            </div>
+          </div>
 
-              <div className="group grid grid-cols-[56px_1fr] md:grid-cols-[100px_1fr_1.4fr] items-start gap-4 md:gap-8 py-7 md:py-10 transition-colors hover:bg-border/20 rounded-xl px-3">
-                {/* Number */}
-                <span className={`text-3xl md:text-5xl font-black tabular-nums opacity-30 group-hover:opacity-70 transition-opacity ${p.color}`}>
-                  {p.num}
-                </span>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {directors.map((d, i) => (
+              <motion.div
+                key={d.name}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                className="group relative overflow-hidden rounded-2xl bg-foreground"
+                style={{
+                  boxShadow: `0 0 0 1px oklch(1 0 0 / 0.07), 0 24px 48px -12px oklch(0 0 0 / 0.4)`,
+                }}
+              >
+                {/* Ambient glow in corner */}
+                <div
+                  className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full blur-3xl opacity-25 group-hover:opacity-40 transition-opacity"
+                  style={{ background: `radial-gradient(circle, ${d.accent}, transparent 70%)` }}
+                />
 
-                {/* Title + desc (one cell on mobile, display:contents on md+) */}
-                <div className="md:contents">
-                  <div className="flex items-start gap-3">
-                    <div className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${p.bar}`} />
-                    <h3 className="text-lg md:text-2xl font-semibold text-foreground leading-snug">
-                      {p.title}
-                    </h3>
+                {/* Top colour bar */}
+                <div
+                  className={`h-1 w-full bg-gradient-to-r ${d.gradient}`}
+                />
+
+                <div className="relative flex flex-col gap-6 p-7">
+                  {/* Avatar */}
+                  <div className="relative w-fit">
+                    {d.photo ? (
+                      <img
+                        src={d.photo}
+                        alt={d.name}
+                        className="h-24 w-24 rounded-2xl object-cover ring-2 ring-white/10"
+                      />
+                    ) : (
+                      <div
+                        className={`flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br ${d.gradient} select-none ring-2 ring-white/10`}
+                      >
+                        <span className="text-3xl font-black text-white tracking-tight">
+                          {d.initials}
+                        </span>
+                      </div>
+                    )}
+                    <span className="absolute -bottom-1.5 -right-1.5 h-4 w-4 rounded-full border-2 border-foreground bg-emerald-400" />
                   </div>
-                  <p className="mt-2 md:mt-0 text-sm text-muted-foreground leading-relaxed md:text-base md:pt-1.5">
-                    {p.desc}
+
+                  {/* Name + role */}
+                  <div>
+                    <h4 className="text-xl font-bold text-white leading-tight">
+                      {d.name}
+                    </h4>
+                    <p
+                      className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em]"
+                      style={{ color: d.accent }}
+                    >
+                      {d.role}
+                    </p>
+                  </div>
+
+                  {/* Bio */}
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    {d.bio}
                   </p>
+
+                  {/* Divider — LinkedIn slot left empty for later */}
+                  <div className="h-px bg-white/8" />
+                  <div className="h-4" />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-          {/* Final divider */}
-          <div className="h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* ── What we believe — full-width dark band ── */}
+        {/* ── What we believe — dark band ── */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,13 +198,15 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mt-20 relative overflow-hidden rounded-3xl bg-foreground p-10 md:p-16"
         >
-          {/* Subtle texture */}
           <div className="pointer-events-none absolute inset-0 opacity-20"
-            style={{ backgroundImage: "radial-gradient(circle at 70% 50%, oklch(0.55 0.2 250 / 0.4) 0%, transparent 60%), radial-gradient(circle at 20% 80%, oklch(0.62 0.16 162 / 0.3) 0%, transparent 50%)" }} />
+            style={{ backgroundImage: "radial-gradient(circle at 70% 50%, oklch(0.55 0.2 250 / 0.4) 0%, transparent 60%), radial-gradient(circle at 20% 80%, oklch(0.62 0.16 162 / 0.3) 0%, transparent 50%)" }}
+          />
 
           <div className="relative grid gap-12 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-white/40">What we believe</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/40">
+                What we believe
+              </p>
               <h3 className="mt-4 text-3xl font-bold text-white leading-snug md:text-4xl">
                 Collections done right<br />
                 <span className="text-transparent bg-clip-text"
@@ -151,7 +215,9 @@ export default function About() {
                 </span>
               </h3>
               <p className="mt-5 max-w-md text-sm text-white/55 leading-relaxed">
-                We built Axiotta because the industry needed a partner that could combine speed and scale with fairness and full regulatory compliance — not choose between them.
+                We built Axiotta because the industry needed a partner that could combine
+                speed and scale with fairness and full regulatory compliance — not choose
+                between them.
               </p>
             </div>
             <ul className="space-y-5 md:min-w-[340px]">

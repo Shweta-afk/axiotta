@@ -128,9 +128,9 @@ export default function Contact() {
               </div>
 
               <div className="mt-12 space-y-3.5 text-sm text-white/50">
-                <a href="mailto:partners@verisolve.in" className="flex items-center gap-3 hover:text-white/80 transition-colors">
+                <a href="mailto:invoice@axiotta.com" className="flex items-center gap-3 hover:text-white/80 transition-colors">
                   <Mail className="h-4 w-4 text-[oklch(0.65_0.18_230)]" />
-                  partners@verisolve.in
+                  invoice@axiotta.com
                 </a>
                 <a href="tel:+919152285233" className="flex items-center gap-3 hover:text-white/80 transition-colors">
                   <Phone className="h-4 w-4 text-[oklch(0.65_0.18_230)]" />
@@ -138,7 +138,8 @@ export default function Contact() {
                 </a>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4 text-[oklch(0.65_0.18_230)]" />
-                  BKC, Mumbai · Bengaluru · Delhi NCR
+                  AXIOTTA TECHNOLOGIES PRIVATE LIMITED
+                  Office No.209, 2nd Floor, 86 Central A, Ganga Wadi Lane, LBS Road, Ghatkopar (West), Mumbai - 400086  
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="h-4 w-4 text-[oklch(0.65_0.18_230)]" />
@@ -163,7 +164,7 @@ export default function Contact() {
                 className="relative rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-xl p-8 space-y-5"
               >
                 <div>
-                  <h3 className="text-lg font-semibold text-white">Request a consultation</h3>
+                  <h3 className="text-lg font-semibold text-white">Start your recovery</h3>
                   <p className="mt-1 text-xs text-white/40">No commitment. Response within 24 hours.</p>
                 </div>
 
@@ -216,7 +217,7 @@ export default function Contact() {
                       <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
                     ) : (
                       <>
-                        Request Consultation
+                        Start Recovery
                         <motion.span
                           animate={{ x: [0, 4, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

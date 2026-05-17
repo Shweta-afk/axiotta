@@ -25,11 +25,11 @@ const problems = [
   },
   {
     icon: ShieldAlert,
-    title: "FMRG Violations Costing Licences",
+    title: "One Wrong Call Can Cost You Your Licence",
     problem:
-      "One out-of-hours call, one missing notice, one unlogged visit — and you're looking at RBI censure, fines or worse. Manual ops can't guarantee compliance at scale.",
+      "A call made outside permitted hours, a missing borrower notice, an unlogged field visit — any single slip can trigger RBI censure, heavy fines, or worse. Manual teams can't maintain that standard at scale.",
     solution:
-      "Every channel — WhatsApp, SMS, Voice Bot, tele-call, field visit — runs through automated FMRG guardrails. 100% audit-ready logs, zero compliance gaps.",
+      "Every channel — WhatsApp, SMS, Voice Bot, tele-call, field visit — runs through automated compliance guardrails that enforce RBI's Fair Practices Code in real time. 100% audit-ready logs, zero compliance gaps.",
     metric: "100% audit trail",
     accent: "border-emerald-500/40",
     glow: "bg-emerald-500/10",

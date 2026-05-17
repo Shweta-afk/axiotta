@@ -72,14 +72,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Axiotta Technologies" },
-      { name: "description", content: "Axiotta Technologies - Recovery System" },
+      { title: "Axiotta Technologies — AI-Powered Debt Recovery for Banks & NBFCs" },
+      {
+        name: "description",
+        content:
+          "Axiotta Technologies combines AI with 500+ field agents to recover NPAs faster, smarter and fully RBI-compliant. Serving banks, NBFCs and fintechs across 120+ cities in India.",
+      },
+      { name: "keywords", content: "NPA recovery, debt collection, RBI compliant, NBFC recovery, fintech collections, AI debt recovery India" },
       { name: "author", content: "Axiotta Technologies" },
-      { property: "og:title", content: "Axiotta Technologies" },
-      { property: "og:description", content: "Axiotta Technologies - Recovery System" },
+      { property: "og:title", content: "Axiotta Technologies — AI-Powered Debt Recovery" },
+      {
+        property: "og:description",
+        content:
+          "Axiotta combines AI-driven CRM with trained field agents to recover outstanding dues faster, at lower cost — with 100% RBI compliance and a full audit trail.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@axiotta" },
+      { property: "og:url", content: "https://axiotta.com" },
+      { property: "og:site_name", content: "Axiotta Technologies" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Axiotta Technologies — AI-Powered Debt Recovery" },
+      {
+        name: "twitter:description",
+        content: "Recovery solutions for Indian banks, NBFCs and fintechs. 120+ cities. 500+ agents. 100% RBI compliant.",
+      },
+      { name: "robots", content: "index, follow" },
     ],
     links: [
       {

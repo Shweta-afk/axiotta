@@ -8,6 +8,7 @@ import Services from "@/components/site/Services";
 import Stats from "@/components/site/Stats";
 import IndiaMap from "@/components/site/IndiaMap";
 import Process from "@/components/site/Process";
+import Differentiator from "@/components/site/Differentiator";
 import Showcase from "@/components/site/Showcase";
 import Clients from "@/components/site/Clients";
 import About from "@/components/site/About";
@@ -19,10 +20,18 @@ import BlogSection from "@/components/site/BlogSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Axiotta Technologies — Smart Recovery Management Solutions" },
-      { name: "description", content: "Fast, legal and efficient debt, loan and NPA recovery for banks, NBFCs and fintechs." },
-      { property: "og:title", content: "Axiotta Technologies — Smart Recovery Management Solutions" },
-      { property: "og:description", content: "Fast, legal and efficient debt, loan and NPA recovery for banks, NBFCs and fintechs." },
+      { title: "Axiotta Technologies — AI-Powered Debt Recovery for Banks & NBFCs" },
+      {
+        name: "description",
+        content:
+          "Axiotta Technologies combines AI with 500+ field agents to recover NPAs faster, smarter and fully RBI-compliant. Serving banks, NBFCs and fintechs across 120+ cities in India.",
+      },
+      { property: "og:title", content: "Axiotta Technologies — AI-Powered Debt Recovery" },
+      {
+        property: "og:description",
+        content:
+          "Axiotta combines AI-driven CRM with trained field agents to recover outstanding dues faster — with 100% RBI compliance and a full audit trail.",
+      },
     ],
   }),
   component: Index,
@@ -40,6 +49,7 @@ function Index() {
       <Stats />
       <IndiaMap />
       <Process />
+      <Differentiator />
       <Clients />
       <BlogSection />
       <About />

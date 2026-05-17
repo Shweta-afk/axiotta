@@ -94,7 +94,7 @@ export default function Showcase() {
               key={i}
               className="absolute grid h-12 w-12 place-items-center rounded-full gradient-primary text-primary-foreground shadow-glow"
               style={{
-                left: `${[-5, 90, 70][i]}%`,
+                left: `${[4, 82, 65][i]}%`,
                 top: `${[60, 20, 80][i]}%`,
               }}
               animate={{ y: [0, -14, 0], rotate: [0, 12, 0] }}

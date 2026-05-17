@@ -97,13 +97,16 @@ export default function Stats() {
           </p>
         </motion.div>
 
-        {/* Hero stat — full width */}
+        {/* Two hero stats side by side */}
+        <div className="mb-8 grid gap-5 md:grid-cols-2">
+
+        {/* Hero stat 1 — NPA under management */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative mb-8 overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-blue-900/60 via-blue-800/35 to-background p-10 shadow-card text-center"
+          className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-blue-900/60 via-blue-800/35 to-background p-10 shadow-card text-center"
         >
           {/* Glow */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -143,6 +146,51 @@ export default function Stats() {
             </motion.div>
           </div>
         </motion.div>
+
+        {/* Hero stat 2 — Recovered this month */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.12 }}
+          className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-900/60 via-emerald-800/35 to-background p-10 shadow-card text-center"
+        >
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div className="h-60 w-60 rounded-full bg-emerald-500/20 blur-3xl" />
+          </div>
+          <div className="relative">
+            <div className="text-xs font-semibold tracking-widest text-emerald-300/80 uppercase mb-3">
+              Recovered This Month
+            </div>
+            <div className="text-6xl font-extrabold tracking-tight md:text-7xl lg:text-8xl text-white drop-shadow-[0_0_40px_rgba(52,211,153,0.5)]">
+              <Counter to={42} prefix="₹" suffix=" Cr+" />
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Active recoveries across retail, MSME &amp; agri portfolios
+            </p>
+          </div>
+          <div className="relative mt-6 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "68%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.8, ease: "easeOut" }}
+              className="relative h-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, oklch(0.55 0.18 162), oklch(0.74 0.13 162), oklch(0.8 0.12 180))",
+              }}
+            >
+              <motion.span
+                className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                animate={{ x: ["-100%", "600%"] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        </div>{/* end two-hero grid */}
 
         {/* 5 smaller stats */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
