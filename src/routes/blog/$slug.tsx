@@ -16,13 +16,13 @@ export const Route = createFileRoute("/blog/$slug")({
     return {
       meta: post
         ? [
-            { title: `${post.title} — Axiotta Blog` },
+            { title: `${post.title} — Axiotta Insights` },
             { name: "description", content: post.excerpt },
             { property: "og:title", content: post.title },
             { property: "og:description", content: post.excerpt },
             { property: "og:type", content: "article" },
           ]
-        : [{ title: "Post not found — Axiotta Blog" }],
+        : [{ title: "Post not found — Axiotta Insights" }],
     };
   },
   component: BlogPost,

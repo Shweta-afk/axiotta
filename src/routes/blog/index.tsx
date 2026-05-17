@@ -10,7 +10,7 @@ import { getPublishedPostsFn, getCategoriesFn } from "@/lib/blog-api";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Blog — Axiotta Technologies" },
+      { title: "Insights — Axiotta Technologies" },
       {
         name: "description",
         content:
@@ -93,6 +93,7 @@ function BlogIndex() {
               Insights
             </span>
           </h1>
+
           <p className="mt-3 max-w-xl text-lg text-muted-foreground">
             Expert perspectives on NPA recovery, compliance, and the future of fintech.
           </p>

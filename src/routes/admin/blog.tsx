@@ -36,7 +36,7 @@ import {
 } from "@/lib/blog-store";
 
 export const Route = createFileRoute("/admin/blog")({
-  head: () => ({ meta: [{ title: "Blog Admin — Axiotta" }] }),
+  head: () => ({ meta: [{ title: "Insights Admin — Axiotta" }] }),
   component: AdminBlog,
 });
 
@@ -91,7 +91,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
       >
         <div className="mb-8 flex flex-col items-center gap-3">
           <img src={logo} alt="Axiotta" className="h-14 w-auto" />
-          <p className="text-sm text-muted-foreground">Blog Admin Panel</p>
+          <p className="text-sm text-muted-foreground">Insights Admin Panel</p>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-8 shadow-card">
@@ -460,7 +460,7 @@ function AdminPanel() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <img src={logo} alt="Axiotta" className="h-10 w-auto" />
-            <span className="text-sm font-semibold text-muted-foreground">/ Blog Admin</span>
+            <span className="text-sm font-semibold text-muted-foreground">/ Insights Admin</span>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -484,7 +484,7 @@ function AdminPanel() {
               target="_blank"
               className="flex items-center gap-1.5 rounded-xl border border-border px-3 py-1.5 text-xs transition-colors hover:bg-accent"
             >
-              <Eye className="h-3.5 w-3.5" /> View Blog
+              <Eye className="h-3.5 w-3.5" /> View Insights
             </a>
             <button
               onClick={handleLogout}

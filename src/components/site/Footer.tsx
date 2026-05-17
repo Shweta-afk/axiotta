@@ -19,7 +19,7 @@ export default function Footer() {
 
         {/* Links */}
         <div className="flex gap-6 text-xs text-muted-foreground">
-          <a href="/blog" className="hover:text-foreground">Blog</a>
+          <a href="/blog" className="hover:text-foreground">Insights</a>
           <a href="#" className="hover:text-foreground">Privacy</a>
           <a href="#" className="hover:text-foreground">Terms</a>
           <a href="#" className="hover:text-foreground">Compliance</a>

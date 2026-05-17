@@ -46,7 +46,7 @@ export default function BlogSection() {
                 className="gradient-text bg-[length:200%_200%]"
                 style={{ backgroundImage: "var(--gradient-text)" }}
               >
-                Axiotta Blog
+                Axiotta Insights
               </span>
             </h2>
             <p className="mt-3 max-w-xl text-muted-foreground">
