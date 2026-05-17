@@ -17,19 +17,22 @@ import {
   Save,
   FileText,
   Settings,
+  Loader2,
 } from "lucide-react";
 import logo from "@/images/axiotta-logo-r.png";
 import {
-  getAllPosts,
-  createPost,
-  updatePost,
-  deletePost,
+  getAllPostsFn,
+  createPostFn,
+  updatePostFn,
+  deletePostFn,
+  type BlogPost,
+  type CreatePostInput,
+} from "@/lib/blog-api";
+import {
   isAdminLoggedIn,
   adminLogin,
   adminLogout,
   changeAdminPassword,
-  type BlogPost,
-  type CreatePostInput,
 } from "@/lib/blog-store";
 
 export const Route = createFileRoute("/admin/blog")({
@@ -377,15 +380,24 @@ function SettingsPanel() {
 
 // ── Main Admin Panel ──────────────────────────────────────────
 function AdminPanel() {
-  const [posts, setPosts] = useState<BlogPost[]>(() => getAllPosts());
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [view, setView] = useState<"posts" | "settings">("posts");
   const [editing, setEditing] = useState<{ id?: string; form: CreatePostInput } | null>(null);
   const [toast, setToast] = useState<{ msg: string; ok: boolean } | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  function refresh() {
-    setPosts(getAllPosts());
+  async function refresh() {
+    setLoading(true);
+    try {
+      const data = await getAllPostsFn();
+      setPosts(data);
+    } finally {
+      setLoading(false);
+    }
   }
+
+  useEffect(() => { refresh(); }, []);
 
   function showToast(msg: string, ok = true) {
     setToast({ msg, ok });
@@ -397,33 +409,45 @@ function AdminPanel() {
     window.location.reload();
   }
 
-  function handleSave(data: CreatePostInput) {
+  async function handleSave(data: CreatePostInput) {
     if (!data.title.trim() || !data.content.trim()) {
       showToast("Title and content are required.", false);
       return;
     }
-    if (editing?.id) {
-      updatePost(editing.id, data);
-      showToast("Post updated successfully.");
-    } else {
-      createPost(data);
-      showToast("Post created successfully.");
+    try {
+      if (editing?.id) {
+        await updatePostFn({ data: { id: editing.id, ...data } });
+        showToast("Post updated successfully.");
+      } else {
+        await createPostFn({ data });
+        showToast("Post created successfully.");
+      }
+      setEditing(null);
+      await refresh();
+    } catch {
+      showToast("Failed to save post. Please try again.", false);
     }
-    setEditing(null);
-    refresh();
   }
 
-  function handleDelete(id: string) {
+  async function handleDelete(id: string) {
     if (!confirm("Delete this post? This cannot be undone.")) return;
-    deletePost(id);
-    showToast("Post deleted.");
-    refresh();
+    try {
+      await deletePostFn({ data: id });
+      showToast("Post deleted.");
+      await refresh();
+    } catch {
+      showToast("Failed to delete post.", false);
+    }
   }
 
-  function handleTogglePublish(post: BlogPost) {
-    updatePost(post.id, { ...post, tags: post.tags.join(", "), published: !post.published });
-    showToast(post.published ? "Post unpublished." : "Post published.");
-    refresh();
+  async function handleTogglePublish(post: BlogPost) {
+    try {
+      await updatePostFn({ data: { id: post.id, tags: post.tags.join(", "), published: !post.published } });
+      showToast(post.published ? "Post unpublished." : "Post published.");
+      await refresh();
+    } catch {
+      showToast("Failed to update post.", false);
+    }
   }
 
   const publishedCount = posts.filter((p) => p.published).length;
@@ -529,7 +553,11 @@ function AdminPanel() {
             </div>
 
             {/* Post list */}
-            {posts.length === 0 ? (
+            {loading ? (
+              <div className="py-24 text-center text-muted-foreground flex items-center justify-center gap-2">
+                <Loader2 className="h-5 w-5 animate-spin" /> Loading posts…
+              </div>
+            ) : posts.length === 0 ? (
               <div className="py-24 text-center text-muted-foreground">
                 No posts yet.{" "}
                 <button

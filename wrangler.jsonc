@@ -3,5 +3,12 @@
   "name": "axiotta",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "src/server.ts"
+  "main": "src/server.ts",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "axiotta-blog",
+      "database_id": "646a411f-3f44-4c5a-b4be-4b8f6db78a17"
+    }
+  ]
 }

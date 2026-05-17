@@ -5,7 +5,7 @@ import { Clock, Search, Tag, ArrowLeft, BookOpen } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import AmbientBackground from "@/components/site/AmbientBackground";
-import { getPublishedPosts, getCategories } from "@/lib/blog-store";
+import { getPublishedPostsFn, getCategoriesFn } from "@/lib/blog-api";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -17,6 +17,10 @@ export const Route = createFileRoute("/blog/")({
           "Insights on NPA recovery, fintech compliance, and AI-driven debt resolution from the Axiotta team.",
       },
     ],
+  }),
+  loader: async () => ({
+    posts: await getPublishedPostsFn(),
+    categories: await getCategoriesFn(),
   }),
   component: BlogIndex,
 });
@@ -38,8 +42,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 function BlogIndex() {
-  const allPosts = getPublishedPosts();
-  const categories = getCategories();
+  const { posts: allPosts, categories } = Route.useLoaderData();
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
 

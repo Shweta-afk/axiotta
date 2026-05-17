@@ -4,11 +4,15 @@ import { ArrowLeft, Clock, Calendar, Tag, User, Share2 } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import AmbientBackground from "@/components/site/AmbientBackground";
-import { getPostBySlug, getPublishedPosts } from "@/lib/blog-store";
+import { getPostBySlugFn, getPublishedPostsFn } from "@/lib/blog-api";
 
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => {
-    const post = getPostBySlug(params.slug);
+  loader: async ({ params }) => ({
+    post: await getPostBySlugFn({ data: params.slug }),
+    allPosts: await getPublishedPostsFn(),
+  }),
+  head: ({ loaderData }) => {
+    const post = loaderData?.post;
     return {
       meta: post
         ? [
@@ -40,8 +44,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 function BlogPost() {
-  const { slug } = Route.useParams();
-  const post = getPostBySlug(slug);
+  const { post, allPosts } = Route.useLoaderData();
 
   if (!post) {
     return (
@@ -64,7 +67,7 @@ function BlogPost() {
   }
 
   // Related posts (same category, excluding current)
-  const related = getPublishedPosts()
+  const related = allPosts
     .filter((p) => p.id !== post.id && p.category === post.category)
     .slice(0, 2);
 
@@ -190,7 +193,7 @@ function BlogPost() {
             href="/#contact"
             className="mt-5 inline-flex items-center gap-2 rounded-xl gradient-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-glow transition-all hover:scale-105"
           >
-            Request Consultation
+            Start Recovery
           </a>
         </motion.div>
 
