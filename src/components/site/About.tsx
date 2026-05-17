@@ -103,24 +103,24 @@ export default function About() {
               {/* Divider */}
               <div className="h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
 
-              <div className="group grid grid-cols-[80px_1fr_1fr] items-start gap-8 py-8 md:grid-cols-[100px_1fr_1.4fr] md:py-10 transition-colors hover:bg-border/20 rounded-xl px-3">
+              <div className="group grid grid-cols-[56px_1fr] md:grid-cols-[100px_1fr_1.4fr] items-start gap-4 md:gap-8 py-7 md:py-10 transition-colors hover:bg-border/20 rounded-xl px-3">
                 {/* Number */}
-                <span className={`text-4xl font-black tabular-nums opacity-30 group-hover:opacity-70 transition-opacity md:text-5xl ${p.color}`}>
+                <span className={`text-3xl md:text-5xl font-black tabular-nums opacity-30 group-hover:opacity-70 transition-opacity ${p.color}`}>
                   {p.num}
                 </span>
 
-                {/* Title */}
-                <div className="flex items-start gap-3 pt-1.5">
-                  <div className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${p.bar}`} />
-                  <h3 className="text-xl font-semibold text-foreground leading-snug md:text-2xl">
-                    {p.title}
-                  </h3>
+                {/* Title + desc (one cell on mobile, display:contents on md+) */}
+                <div className="md:contents">
+                  <div className="flex items-start gap-3">
+                    <div className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${p.bar}`} />
+                    <h3 className="text-lg md:text-2xl font-semibold text-foreground leading-snug">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <p className="mt-2 md:mt-0 text-sm text-muted-foreground leading-relaxed md:text-base md:pt-1.5">
+                    {p.desc}
+                  </p>
                 </div>
-
-                {/* Description */}
-                <p className="pt-1.5 text-sm text-muted-foreground leading-relaxed md:text-base">
-                  {p.desc}
-                </p>
               </div>
             </motion.div>
           ))}

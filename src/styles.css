@@ -246,6 +246,30 @@ main > section:nth-of-type(even) {
   100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
 }
 
+/* ── Mobile performance optimisations ── */
+@media (max-width: 639px) {
+  /* Downgrade expensive Gaussian blurs — blur-3xl (96px) is a GPU killer on mobile */
+  .blur-3xl { filter: blur(32px) !important; }
+  .blur-2xl { filter: blur(20px) !important; }
+
+  /* Remove backdrop-filter on mobile — fallback to solid bg in glass classes */
+  .glass {
+    background: oklch(1 0 0 / 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .glass-strong {
+    background: oklch(1 0 0 / 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Smooth scroll performance */
+section {
+  contain: layout style;
+}
+
 /* =============================================================
    BLOG CONTENT STYLES
    Append these rules to the end of src/styles.css

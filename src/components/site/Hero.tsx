@@ -7,19 +7,21 @@ export default function Hero() {
       <div className="absolute inset-0 gradient-hero" />
       <div className="absolute inset-0 grid-bg opacity-30" />
 
-      {/* glowing orbs */}
-      <motion.div
-        aria-hidden
-        className="absolute -left-32 top-40 h-72 w-72 rounded-full bg-primary/30 blur-3xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4], x: [0, 40, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute -right-20 top-10 h-80 w-80 rounded-full bg-accent-emerald/25 blur-3xl"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.3, 0.5], x: [0, -30, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
+      {/* glowing orbs — hidden on mobile to reduce GPU load */}
+      <div className="hidden sm:block">
+        <motion.div
+          aria-hidden
+          className="absolute -left-32 top-40 h-72 w-72 rounded-full bg-primary/30 blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4], x: [0, 40, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          aria-hidden
+          className="absolute -right-20 top-10 h-80 w-80 rounded-full bg-accent-emerald/25 blur-3xl"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.3, 0.5], x: [0, -30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 lg:grid-cols-2">
         <motion.div
@@ -101,7 +103,9 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <HeroVisual />
+        <div className="hidden sm:block">
+          <HeroVisual />
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function AmbientBackground() {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden hidden sm:block">
       {/* Rotating conic glow */}
       <motion.div
         className="absolute left-1/2 top-1/2 h-[1200px] w-[1200px] -translate-x-1/2 -translate-y-1/2 opacity-40"
@@ -10,6 +10,7 @@ export default function AmbientBackground() {
           background:
             "conic-gradient(from 0deg, oklch(0.68 0.18 245 / 0.25), transparent 30%, oklch(0.74 0.18 160 / 0.22) 60%, transparent 80%, oklch(0.68 0.18 245 / 0.25))",
           filter: "blur(80px)",
+          willChange: "transform",
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -25,7 +26,7 @@ export default function AmbientBackground() {
         <motion.div
           key={i}
           className={`absolute h-72 w-72 rounded-full blur-3xl ${o.c}`}
-          style={{ left: o.x, top: o.y }}
+          style={{ left: o.x, top: o.y, willChange: "transform" }}
           animate={{
             x: [0, 60, -40, 0],
             y: [0, -50, 30, 0],

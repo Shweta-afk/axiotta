@@ -29,7 +29,7 @@ function ServicesMindmap() {
   return (
     <div className="flex items-center justify-center">
       {/* Plain div owns position/size — no Framer scale on container */}
-      <div className="relative" style={{ width: 380, height: 380 }}>
+      <div className="relative mx-auto" style={{ width: 'min(380px, calc(100vw - 2rem))', height: 'min(380px, calc(100vw - 2rem))' }}>
         {/* SVG layer — arrows + orbit ring */}
         <svg
           className="absolute inset-0 w-full h-full"
