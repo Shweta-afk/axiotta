@@ -18,7 +18,9 @@ export const submitApplication = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      throw new Error("Email service not configured. Please set RESEND_API_KEY.");
+      // Log internally — never expose config errors to users
+      console.error("[careers] RESEND_API_KEY is not set");
+      throw new Error("We couldn't submit your application right now. Please email your resume directly to hr@axiotta.com and we'll get back to you.");
     }
 
     const resend = new Resend(apiKey);
@@ -54,6 +56,9 @@ export const submitApplication = createServerFn({ method: "POST" })
       attachments: attachments.length ? attachments : undefined,
     });
 
-    if (result.error) throw new Error(result.error.message);
+    if (result.error) {
+      console.error("[careers] Resend error:", result.error.message);
+      throw new Error("We couldn't submit your application right now. Please email your resume directly to hr@axiotta.com and we'll get back to you.");
+    }
     return { ok: true };
   });
